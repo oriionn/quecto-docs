@@ -1,13 +1,17 @@
+import { SiDocker } from "@icons-pack/react-simple-icons"
+
 ---
-title: Hello World
-description: Your first document
+title: Quecto
+description: A simple selfhostable link shortener 
 ---
 
-Welcome to the docs! You can start writing documents in `/content/docs`.
+Quecto is a simple link shortener. It is written in TypeScript, and use Bun for performance. Currently, it uses SQLite as its database, but in the future it could potentially support MySQL and PostgreSQL.
 
-## What is Next?
+# Installation
+## Requirements
+
 
 <Cards>
-  <Card title="Learn more about Next.js" href="https://nextjs.org/docs" />
-  <Card title="Learn more about Fumadocs" href="https://fumadocs.vercel.app" />
+    <Card title="Standalone" href="/installation/standalone" icon={<SiDocker />} /> 
+    <Card title="Docker" href="/installation/docker" /> 
 </Cards>

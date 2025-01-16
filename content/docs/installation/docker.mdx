@@ -6,7 +6,7 @@ description: Host Quecto with Docker
 # Docker CLI
 
 1. Run with Docker
-
+   <br /> but replace `port` and `/path/to/quecto` with your desired port and path.
 ```bash
 docker run -d -p port:3000 -v /path/to/quecto:/app/data --name quecto oriionn/quecto
 ```
@@ -23,6 +23,7 @@ docker exec quecto bun generate:config && bun generate:db
 # Docker Compose
 
 1. Create a `docker-compose.yml` file
+   <br /> but replace `port` and `/path/to/quecto` with your desired port and path.
 ```yaml
 version: "3"
 services:

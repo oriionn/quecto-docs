@@ -1,0 +1,48 @@
+---
+title: Docker
+description: Host Quecto with Docker
+---
+
+# Docker CLI
+
+1. Run with Docker
+
+```bash
+docker run -d -p port:3000 -v /path/to/quecto:/app/data --name quecto oriionn/quecto
+```
+
+2. Initialize database and config
+```bash
+docker exec quecto bun generate:config && bun generate:db
+```
+
+3. Edit the `config.yml` file in the `data` directory.
+
+
+
+# Docker Compose
+
+1. Create a `docker-compose.yml` file
+```yaml
+version: "3"
+services:
+  server:
+    image: oriionn/quecto
+    restart: always
+    ports:
+      - port:3000
+    volumes:
+      - /path/to/quecto:/app/data
+```
+
+2. Run with Docker Compose
+```bash
+docker-compose up -d
+```
+
+3. Initialize database and config
+```bash
+docker exec quecto bun generate:config && bun generate:db
+```
+
+4. Edit the `config.yml` file in the `data` directory.

@@ -3,47 +3,73 @@ title: Docker
 description: Host Quecto with Docker
 ---
 
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+
 # Docker CLI
 
-1. Run with Docker
-   <br /> but replace `port` and `/path/to/quecto` with your desired port and path.
-```bash
-docker run -d -p port:3000 -v /path/to/quecto:/app/data --name quecto oriionn/quecto
-```
+<Steps>
+    <Step>
+        ## Run with Docker
+        Execute the following command to run Quecto with Docker, but replace `port` and `/path/to/quecto` with your desired port and path.
+        ```bash
+        docker run -d -p port:3000 -v /path/to/quecto:/app/data --name quecto oriionn/quecto
+        ```
+    </Step>
 
-2. Initialize database and config
-```bash
-docker exec quecto bun generate:config && bun generate:db
-```
+    <Step>
+        ## Initialize database and config
+        Execute the following command to generate the database and configuration files.
+        ```bash
+        docker exec quecto bun generate:config && bun generate:db
+        ```
+    </Step>
 
-3. Edit the `config.yml` file in the `data` directory.
+    <Step>
+        ## Configuration
+        Edit the `config.yml` file in the `data` directory.
+    </Step>
+</Steps>
 
 
 
 # Docker Compose
 
-1. Create a `docker-compose.yml` file
-   <br /> but replace `port` and `/path/to/quecto` with your desired port and path.
-```yaml
-version: "3"
-services:
-  server:
-    image: oriionn/quecto
-    restart: always
-    ports:
-      - port:3000
-    volumes:
-      - /path/to/quecto:/app/data
-```
+<Steps>
+    <Step>
+        ## Create a `docker-compose.yml` file
+        Create a `docker-compose.yml` file, but replace `port` and `/path/to/quecto` with your desired port and path.
+        ```yaml title="docker-compose.yml"
+        version: "3"
+        services:
+          server:
+            image: oriionn/quecto
+            restart: always
+            ports:
+              - port:3000
+            volumes:
+              - /path/to/quecto:/app/data
+        ```
+    </Step>
 
-2. Run with Docker Compose
-```bash
-docker-compose up -d
-```
+    <Step>
+        ## Run with Docker Compose
+        Execute the following command to run Quecto with Docker Compose.
+        ```bash
+        docker-compose up -d
+        ```
+    </Step>
 
-3. Initialize database and config
-```bash
-docker exec quecto bun generate:config && bun generate:db
-```
+    <Step>
+        ## Initialize database and config
+        Execute the following command to generate the database and configuration files.
+        ```bash
+        docker exec quecto bun generate:config && bun generate:db
+        ```
+    </Step>
 
-4. Edit the `config.yml` file in the `data` directory.
+    <Step>
+        ## Configuration
+        Edit the `config.yml` file in the `data` directory.
+    </Step>
+
+</Steps>

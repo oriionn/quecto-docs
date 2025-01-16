@@ -1,0 +1,48 @@
+---
+title: "Standalone"
+description: "Host Quecto with bun runtime"
+---
+import { SiBun } from "@icons-pack/react-simple-icons";
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+
+# Requirements
+<Cards>
+    <Card title="Bun" icon={<SiBun color="#FEF0DF" />} className="card-vertical" />
+</Cards>
+
+# Installation
+
+<Steps>
+    <Step>
+        ## Clone the repository
+        Execute the following command to clone the repository.
+        ```bash
+        git clone https://github.com/oriionn/quecto.git
+        ```
+    </Step>
+
+    <Step>
+        ## Install dependencies
+        Execute following commands to install the dependencies.
+        ```bash
+        cd quecto
+        bun install
+        ```
+    </Step>
+
+    <Step>
+        ## Build the project
+        Execute the following command to build the project.
+        ```bash
+        bun run build
+        ```
+    </Step>
+
+    <Step>
+        ## Run the project
+        Execute the following command to run the project.
+        ```bash
+        bun start
+        ```
+    </Step>
+</Steps>

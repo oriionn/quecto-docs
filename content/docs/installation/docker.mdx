@@ -5,11 +5,12 @@ description: Host Quecto with Docker
 
 import { Step, Steps } from 'fumadocs-ui/components/steps';
 
-# Docker CLI
+
+# Docker CLI [#cli]
 
 <Steps>
     <Step>
-        ## Run with Docker
+        ## Run with Docker [#cli-run]
         Execute the following command to run Quecto with Docker, but replace `port` and `/path/to/quecto` with your desired port and path.
         ```bash
         docker run -d -p port:3000 -v /path/to/quecto:/app/data --name quecto oriionn/quecto

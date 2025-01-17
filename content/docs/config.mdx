@@ -1,0 +1,51 @@
+---
+title: Configuration
+description: Configure your Quecto instance
+---
+
+## Instance name
+The `instance` field is the name of your Quecto instance. It is used in the title of the web page and in the opengraph.
+
+```yaml title="config.yml"
+instance: "Quecto"
+```
+
+## Domain
+The `domain` field is the domain of your Quecto instance. It is used to generate the short links.
+
+```yaml title="config.yml"
+domain: "quecto.example.com"
+```
+
+## SSL
+The `ssl` field is a boolean that indicates if your Quecto instance is using SSL. It is used to generate the short links.
+
+```yaml title="config.yml"
+ssl: true
+```
+
+## Authorizing custom shortcodes
+The `authorize_custom_shortcode` is a boolean that indicates if you want to authorize custom shortcodes. It is used to generate the short links.
+
+```yaml title="config.yml"
+authorize_custom_shortcode: true
+```
+
+## Expiration times
+The `expirations` field is a list of expiration times for the short links. It is used to generate the short links.
+
+### Name
+
+The `name` field is the name of the expiration time.
+
+### Minutes
+The `minutes` field is the number of minutes before the short link expires.
+If you want to put a unlimited expiration time, you can put `0` in the field.
+
+```yaml title="config.yml"
+expirations:
+    - name: "Unlimited"
+      minutes: 0
+    - name: "1 hour"
+      minutes: 60
+```

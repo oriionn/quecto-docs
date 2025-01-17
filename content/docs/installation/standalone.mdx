@@ -39,6 +39,21 @@ import { Step, Steps } from 'fumadocs-ui/components/steps';
     </Step>
 
     <Step>
+        ### Generate the database and configuration files [#generate]
+        Execute the following command to generate the database and configuration files.
+        ```bash
+        bun generate:config && bun generate:db
+        ```
+    </Step>
+
+    <Step>
+        ### Configuration [#config]
+        Edit the `config.yml` file in the `data` directory.
+
+        For more information, see the [Configuration](docs/config) page.
+    </Step>
+
+    <Step>
         ### Run the project [#run]
         Execute the following command to run the project.
         ```bash
@@ -46,3 +61,5 @@ import { Step, Steps } from 'fumadocs-ui/components/steps';
         ```
     </Step>
 </Steps>
+
+Once you have completed these steps, you can access your Quecto instance at `http://localhost:3000`.

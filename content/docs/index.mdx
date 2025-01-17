@@ -13,3 +13,15 @@ Quecto is a simple link shortener. It is written in TypeScript, and use Bun for 
     <Card title="Standalone" href="docs/installation/standalone" icon={<SiBun color="#FEF0DF" />} target="_self" />
     <Card title="Docker" href="docs/installation/docker" icon={<SiDocker color="#2496ED" />} target="_self" />
 </Cards>
+
+## Configuration [#config]
+
+The `config.yml` file is the configuration file of Quecto. It contains the following fields:
+- `instance`: The name of your Quecto instance.
+- `domain`: The domain of your Quecto instance.
+- `ssl`: A boolean that indicates if your Quecto instance is using SSL.
+- `authorize_custom_shortcode`: A boolean that indicates if you want to authorize custom shortcodes.
+- `expirations`: A list of expiration times for the short links.
+
+For more information, see the [Configuration](docs/config) page.
+

@@ -5,8 +5,4 @@ export const { docs, meta } = defineDocs({
   dir: 'content/docs',
 });
 
-export default defineConfig({
-  mdxOptions: {
-    remarkPlugins: [[remarkHeading, { generateToc: false }]]
-  }
-});
+export default defineConfig();

@@ -1,5 +1,6 @@
 import { defineDocs, defineConfig } from 'fumadocs-mdx/config';
-import {rehypeCode, rehypeToc, remarkHeading} from "fumadocs-core/mdx-plugins";
+import {rehypeCode, rehypeCodeDefaultOptions, rehypeToc, remarkHeading} from "fumadocs-core/mdx-plugins";
+import {transformerTwoslash} from "fumadocs-twoslash";
 
 export const { docs, meta } = defineDocs({
   dir: 'content/docs',
@@ -7,5 +8,13 @@ export const { docs, meta } = defineDocs({
 
 export default defineConfig({
   remarkPlugins: [remarkHeading, rehypeCode, rehypeToc],
-  lastModifiedTime: 'git'
+  lastModifiedTime: 'git',
+  mdxOptions: {
+    rehypeCodeOptions: {
+      transformers: [
+        ...(rehypeCodeDefaultOptions.transformers ?? []),
+        transformerTwoslash(),
+      ],
+    },
+  }
 });

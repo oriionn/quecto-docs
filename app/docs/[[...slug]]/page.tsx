@@ -8,6 +8,7 @@ import {
 import { notFound } from 'next/navigation';
 import defaultMdxComponents from 'fumadocs-ui/mdx';
 import { openapi } from "@/lib/source";
+import {Popup, PopupContent, PopupTrigger} from "fumadocs-twoslash/ui";
 
 export default async function Page(props: {
   params: Promise<{ slug?: string[] }>;
@@ -26,7 +27,7 @@ export default async function Page(props: {
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription>{page.data.description}</DocsDescription>
       <DocsBody>
-        <MDX components={{ ...defaultMdxComponents, APIPage: openapi.APIPage }} />
+        <MDX components={{ ...defaultMdxComponents, APIPage: openapi.APIPage, Popup, PopupContent, PopupTrigger }} />
       </DocsBody>
     </DocsPage>
   );

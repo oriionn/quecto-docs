@@ -20,9 +20,8 @@
   "paths": {
     "/shorten": {
       "post": {
-        "summary": "Shorten a link",
+        "summary": "Shorten a URL",
         "description": "Create a shortened with a specific link",
-        "x-displayName": "Shorten a URL",
         "operationId": "shortenLink",
         "requestBody": {
           "description": "Shorten a link",
@@ -93,9 +92,8 @@
     },
     "/{short_code}": {
       "get": {
-        "summary": "Get a original link",
+        "summary": "Unshorten a URL",
         "description": "Get a original link from a short code",
-        "x-displayName": "Unshorten a URL",
         "operationId": "getOriginalLink",
         "parameters": [
           {
@@ -146,9 +144,8 @@
         }
       },
       "delete": {
-        "summary": "Delete a shortened link",
+        "summary": "Delete shortened URL",
         "description": "Delete a shortened link with a delete token",
-        "x-displayName": "Delete shortened URL",
         "operationId": "deleteShortenedLink",
         "parameters": [
           {
@@ -230,9 +227,8 @@
     },
     "/{short_code}/password": {
       "get": {
-        "summary": "Check if a link has a password",
+        "summary": "Check password need",
         "description": "Check if a shortened link need a password to be unshortened",
-        "x-displayName": "Check password",
         "operationId": "checkPassword",
         "parameters": [
           {
@@ -275,9 +271,8 @@
     },
     "/config": {
       "get": {
-        "summary": "Get instance config",
+        "summary": "Config",
         "description": "Get instance config",
-        "x-displayName": "Config",
         "operationId": "getConfig",
         "responses": {
           "200": {

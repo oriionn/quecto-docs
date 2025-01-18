@@ -1,0 +1,545 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Quecto API",
+    "description": "This is a simple API for Quecto, it can be used in lot of integration, like a mobile app, desktop app or extension.",
+    "license": {
+      "name": "GPL 3.0",
+      "url": "https://www.gnu.org/licenses/gpl-3.0.html"
+    },
+    "version": "2.0.0"
+  },
+  "externalDocs": {
+    "url": "https://docs.quec.to"
+  },
+  "servers": [
+    {
+      "url": "https://s.oriondev.fr/api"
+    }
+  ],
+  "paths": {
+    "/shorten": {
+      "post": {
+        "summary": "Shorten a link",
+        "description": "Create a shortened with a specific link",
+        "x-displayName": "Shorten a URL",
+        "operationId": "shortenLink",
+        "requestBody": {
+          "description": "Shorten a link",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ShortenLinkRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Link has been successfully shortened",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ShortenLinkSuccess"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid Link",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "status": 400,
+                  "message": "Invalid Link"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Short code already used",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "status": 409,
+                  "message": "Short code already used"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Short code already used",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "status": 500,
+                  "message": "An error has occurred on the server. Please try again."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{short_code}": {
+      "get": {
+        "summary": "Get a original link",
+        "description": "Get a original link from a short code",
+        "x-displayName": "Unshorten a URL",
+        "operationId": "getOriginalLink",
+        "parameters": [
+          {
+            "name": "short_code",
+            "in": "path",
+            "required": true,
+            "description": "Shortened link short code",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Password followed by \"Basic\" and your password in base64",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "Basic cGFzc3dvcmQ="
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Short code found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnshortenSuccess"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No password provided, when a password is needed / Invalid authorization format",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "status": 401,
+                  "message": "No password provided"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a shortened link",
+        "description": "Delete a shortened link with a delete token",
+        "x-displayName": "Delete shortened URL",
+        "operationId": "deleteShortenedLink",
+        "parameters": [
+          {
+            "name": "short_code",
+            "in": "path",
+            "required": true,
+            "description": "Shortened link short code",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Delete a shortened link with a delete token",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteLinkRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Link has been successfully deleted.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteLinkSuccess"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "status": 401,
+                  "message": "Invalid token"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Link not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "status": 404,
+                  "message": "Link not found"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An error has occurred on the server. Please try again.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "status": 500,
+                  "message": "An error has occurred on the server. Please try again."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{short_code}/password": {
+      "get": {
+        "summary": "Check if a link has a password",
+        "description": "Check if a shortened link need a password to be unshortened",
+        "x-displayName": "Check password",
+        "operationId": "checkPassword",
+        "parameters": [
+          {
+            "name": "short_code",
+            "in": "path",
+            "required": true,
+            "description": "Shortened link short code",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The link have a password",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/hasPasswordSuccess"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Short code not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "status": 404,
+                  "message": "Short code not found"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/config": {
+      "get": {
+        "summary": "Get instance config",
+        "description": "Get instance config",
+        "x-displayName": "Config",
+        "operationId": "getConfig",
+        "responses": {
+          "200": {
+            "description": "Config is here",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConfigSuccess"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ShortenLinkRequest": {
+        "type": "object",
+        "properties": {
+          "link": {
+            "type": "string",
+            "description": "The link to shorten",
+            "format": "link",
+            "example": "https://google.com"
+          },
+          "expiration": {
+            "type": "integer",
+            "description": "The expiration time in minutes of the shortened link",
+            "format": "int64",
+            "example": 0
+          },
+          "password": {
+            "type": "string",
+            "description": "The password needed to have access to the shortened link",
+            "example": "password"
+          },
+          "custom_sc": {
+            "type": "string",
+            "description": "The custom short code for the shortened link",
+            "example": "google"
+          }
+        },
+        "required": [
+          "link",
+          "expiration"
+        ]
+      },
+      "DeleteLinkRequest": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "Delete token of the shortened link",
+            "example": "6efa07a53cb50369df12de7e1ad57d1d82dd3ac0bca734567900feb23691ac30"
+          }
+        }
+      },
+      "UnshortenRequest": {
+        "type": "object",
+        "properties": {
+          "password": {
+            "type": "string",
+            "description": "Password of the shortened link",
+            "example": "password"
+          }
+        }
+      },
+      "LinkResponse": {
+        "properties": {
+          "short_code": {
+            "type": "string",
+            "description": "The short code of the shortened link",
+            "example": "19449fa041f6480"
+          },
+          "link": {
+            "type": "string",
+            "description": "The original link of the shortened link",
+            "example": "https://google.com"
+          },
+          "expiration": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The expiration time in minutes of the shortened link",
+            "example": 0
+          },
+          "delete_token": {
+            "type": "string",
+            "example": "6efa07a53cb50369df12de7e1ad57d1d82dd3ac0bca734567900feb23691ac30"
+          }
+        }
+      },
+      "ShortenLinkSuccess": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "description": "The status of the request (always 200 in this case)",
+            "format": "int64",
+            "example": 200
+          },
+          "message": {
+            "type": "string",
+            "description": "Message from the server",
+            "example": "Link has been successfully shortened."
+          },
+          "data": {
+            "$ref": "#/components/schemas/LinkResponse"
+          }
+        }
+      },
+      "DeleteLinkSuccess": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "description": "The status of the request (always 200 in this case)",
+            "format": "int64",
+            "example": 200
+          },
+          "message": {
+            "type": "string",
+            "description": "Message from the server",
+            "example": "Link has been successfully deleted."
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "short_code": {
+                "type": "string",
+                "example": "19449fa041f6480"
+              }
+            }
+          }
+        }
+      },
+      "UnshortenSuccess": {
+        "properties": {
+          "status": {
+            "type": "integer",
+            "description": "The status of the request (always 200 in this case)",
+            "format": "int64",
+            "example": 200
+          },
+          "message": {
+            "type": "string",
+            "description": "Message from the server",
+            "example": "Short code found"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "short_code": {
+                "type": "string",
+                "example": "19449fa041f6480"
+              },
+              "link": {
+                "type": "string",
+                "example": "https://google.com"
+              },
+              "expiration": {
+                "type": "integer",
+                "format": "int64",
+                "example": 0
+              },
+              "created_at": {
+                "type": "string",
+                "format": "date",
+                "example": "2025-01-09 07:31:49"
+              }
+            }
+          }
+        }
+      },
+      "hasPasswordSuccess": {
+        "properties": {
+          "status": {
+            "type": "integer",
+            "description": "The status of the request (always 200 in this case)",
+            "format": "int64",
+            "example": 200
+          },
+          "message": {
+            "type": "string",
+            "description": "Message from the server",
+            "example": "The link have a password"
+          },
+          "data": {
+            "type": "boolean",
+            "description": "A boolean corresponding to whether the shortcut link requires a password",
+            "example": false
+          }
+        }
+      },
+      "ConfigSuccess": {
+        "properties": {
+          "status": {
+            "type": "integer",
+            "description": "The status of the request (always 200 in this case)",
+            "format": "int64",
+            "example": 200
+          },
+          "message": {
+            "type": "string",
+            "description": "Message from the server",
+            "example": "Config is here"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "instance": {
+                "type": "string",
+                "example": "Quecto"
+              },
+              "domain": {
+                "type": "string",
+                "example": "s.oriondev.fr"
+              },
+              "ssl": {
+                "type": "boolean",
+                "example": true
+              },
+              "authorize_custom_shortcode": {
+                "type": "boolean",
+                "example": true
+              },
+              "expirations": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "Unlimited"
+                    },
+                    "minutes": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int64",
+            "example": 400
+          },
+          "message": {
+            "type": "string",
+            "example": "Invalid Link"
+          }
+        }
+      }
+    }
+  }
+}

@@ -6,16 +6,21 @@
     "build": "next build",
     "dev": "next dev",
     "start": "next start",
-    "postinstall": "fumadocs-mdx"
+    "postinstall": "fumadocs-mdx",
+    "build:docs": "node ./scripts/generate-docs.mjs"
   },
   "dependencies": {
+    "@fumadocs/cli": "^0.0.7",
     "@icons-pack/react-simple-icons": "^11.0.1",
+    "ajv": "^8.17.1",
     "fumadocs-core": "14.7.4",
     "fumadocs-mdx": "11.3.1",
+    "fumadocs-openapi": "^5.11.5",
     "fumadocs-ui": "14.7.4",
     "next": "15.1.4",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "shiki": "^1.27.2"
   },
   "devDependencies": {
     "@types/node": "22.10.6",

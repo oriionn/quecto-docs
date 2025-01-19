@@ -13,7 +13,7 @@ import { Step, Steps } from 'fumadocs-ui/components/steps';
         ### Run with Docker [#cli-run]
         Execute the following command to run Quecto with Docker, but replace `port` and `/path/to/quecto` with your desired port and path.
         ```bash
-        docker run -d -p port:3000 -v /path/to/quecto:/app/data --name quecto oriionn/quecto
+        docker run -d -p port:3000 -v /path/to/quecto:/app/data --name quecto ghcr.io/oriionn/quecto:latest
         ```
     </Step>
 
@@ -45,7 +45,7 @@ import { Step, Steps } from 'fumadocs-ui/components/steps';
         version: "3"
         services:
           server:
-            image: oriionn/quecto
+            image: ghcr.io/oriionn/quecto:latest
             restart: always
             ports:
               - port:3000

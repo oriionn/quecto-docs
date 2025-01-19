@@ -7,6 +7,7 @@ export const { docs, meta } = defineDocs({
 });
 
 export default defineConfig({
+  // @ts-ignore
   remarkPlugins: [remarkHeading, rehypeCode, rehypeToc],
   lastModifiedTime: 'git',
   mdxOptions: {

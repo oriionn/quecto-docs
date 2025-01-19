@@ -46,6 +46,7 @@ import { Step, Steps } from 'fumadocs-ui/components/steps';
         services:
           server:
             image: ghcr.io/oriionn/quecto:latest
+            container_name: quecto
             restart: always
             ports:
               - port:3000
@@ -66,7 +67,7 @@ import { Step, Steps } from 'fumadocs-ui/components/steps';
         ### Initialize database and config [#compose-init]
         Execute the following command to generate the database and configuration files.
         ```bash
-        docker exec quecto bun generate:config && bun generate:db
+        docker exec quecto bun generate:config && docker exec quecto bun generate:db
         ```
     </Step>
 

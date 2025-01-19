@@ -30,3 +30,4 @@ next-env.d.ts
 .idea
 content/docs/api/**/*.mdx
 !content/docs/api/index.mdx
+!content/docs/api/index.fr.mdx

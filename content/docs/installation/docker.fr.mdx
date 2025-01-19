@@ -1,0 +1,82 @@
+---
+title: Docker
+description: Héberger Quecto avec Docker
+---
+
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+
+
+## Docker CLI [#cli]
+
+<Steps>
+    <Step>
+        ### Démarrer Quecto avec Docker [#cli-run]
+        Executez la commande suivante pour exécuter Quecto avec Docker, mais remplacez `port` et `/path/to/quecto` par le port et le chemin de votre dossier de configuration pour Quecto.
+        ```bash
+        docker run -d -p port:3000 -v /path/to/quecto:/app/data --name quecto ghcr.io/oriionn/quecto:latest
+        ```
+    </Step>
+
+    <Step>
+        ### Initialisation de la base données et des fichiers de configuration [#cli-init]
+        Executez la commande suivante pour générer la base de données et les fichiers de configuration.
+        ```bash
+        docker exec quecto bun generate:config && bun generate:db
+        ```
+    </Step>
+
+    <Step>
+        ### Configuration [#cli-config]
+        Modifiez le fichier `config.yml` dans le dossier de configuration.
+
+        Pour plus d'information, allez voir la page [Configuration](docs/config).
+    </Step>
+</Steps>
+
+
+
+## Docker Compose [#compose]
+
+<Steps>
+    <Step>
+        ### Créer un fichier `docker-compose.yml` [#compose-yml]
+        Créez un fichier `docker-compose.yml`, mais remplacez `port` et `/path/to/quecto` par le port et le chemin de votre dossier de configuration pour Quecto.
+        ```yaml title="docker-compose.yml"
+        version: "3"
+        services:
+          server:
+            image: ghcr.io/oriionn/quecto:latest
+            container_name: quecto
+            restart: always
+            ports:
+              - port:3000
+            volumes:
+              - /path/to/quecto:/app/data
+        ```
+    </Step>
+
+    <Step>
+        ### Démarrer Quecto avec Docker Compose [#compose-run]
+        Executez la commande suivante pour exécuter Quecto avec Docker Compose.
+        ```bash
+        docker-compose up -d
+        ```
+    </Step>
+
+    <Step>
+        ### Initialisation de la base données et des fichiers de configuration [#compose-init]
+        Executez la commande suivante pour générer la base de données et les fichiers de configuration.
+        ```bash
+        docker exec quecto bun generate:config && docker exec quecto bun generate:db
+        ```
+    </Step>
+
+    <Step>
+        ### Configuration [#compose-config]
+        Modifiez le fichier `config.yml` dans le dossier de configuration.
+
+        Pour plus d'information, allez voir la page [Configuration](docs/config).
+    </Step>
+
+</Steps>
+

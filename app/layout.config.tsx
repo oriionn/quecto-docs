@@ -27,4 +27,5 @@ export const baseOptions: BaseLayoutProps = {
         }
     ],
     githubUrl: "https://github.com/oriionn/quecto",
+    i18n: true
 };

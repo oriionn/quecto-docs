@@ -1,0 +1,65 @@
+---
+title: "Standalone"
+description: "Héberger Quecto avec Bun"
+---
+import { SiBun } from "@icons-pack/react-simple-icons";
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+
+## Prérequis [#requirements]
+<Cards>
+    <Card title="Bun" icon={<SiBun color="#FEF0DF" />} className="card-vertical" />
+</Cards>
+
+## Installation [#installation]
+
+<Steps>
+    <Step>
+        ### Cloner le dépôt [#clone]
+        Exécutez la commande suivante pour cloner le dépôt.
+        ```bash
+        git clone https://github.com/oriionn/quecto.git
+        ```
+    </Step>
+
+    <Step>
+        ### Installer les dépendances [#dependencies]
+        Exécutez les commandes suivantes pour installer les dépendances.
+        ```bash
+        cd quecto
+        bun install
+        ```
+    </Step>
+
+    <Step>
+        ### Build le projet [#build]
+        Exécutez la commande suivante pour build le projet.
+        ```bash
+        bun run build
+        ```
+    </Step>
+
+    <Step>
+        ### Initialisation de la base données et des fichiers de configuration [#generate]
+        Exécutez la commande suivante pour générer la base de données et les fichiers de configuration.
+        ```bash
+        bun generate:config && bun generate:db
+        ```
+    </Step>
+
+    <Step>
+        ### Configuration [#config]
+        Modifiez le fichier `config.yml` dans le dossier `data`.
+
+        Pour plus d'information, allez voir la page [Configuration](docs/config).
+    </Step>
+
+    <Step>
+        ### Démarrer le projet [#run]
+        Exécutez la commande suivante pour démarrer le projet.
+        ```bash
+        bun start
+        ```
+    </Step>
+</Steps>
+
+Une fois que vous avez terminé ces étapes, vous pouvez accéder à Quecto en allant sur `http://localhost:3000` dans votre navigateur.

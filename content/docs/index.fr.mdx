@@ -1,0 +1,32 @@
+---
+title: Quecto
+description: Un simple raccourcisseur de lien selfhostable
+---
+
+import { SiDocker, SiBun } from "@icons-pack/react-simple-icons"
+
+Quecto est un simple raccourcisseur de liens. Il est écrit en TypeScript et utilise Bun pour les performances. Actuellement, il utilise SQLite comme base de données, mais à l'avenir il pourrait potentiellement supporter MySQL et PostgreSQL.
+
+## Installation [#installation]
+
+<Cards>
+    <Card title="Standalone" href="docs/installation/standalone" icon={<SiBun color="#FEF0DF" />} target="_self" />
+    <Card title="Docker" href="docs/installation/docker" icon={<SiDocker color="#2496ED" />} target="_self" />
+</Cards>
+
+## Configuration [#config]
+
+Le fichier `config.yml` est le fichier de configuration de Quecto. Il contient les champs suivant :
+- `instance`: Le nom de l'instance.
+- `domain`: Le nom de domaine de l'instance.
+- `ssl`: Si l'instance utilise du HTTPS ou du HTTP.
+- `authorize_custom_shortcode`: Si l'instance autorise les identifiants personnalisé pour les liens.
+- `expirations`: Une liste des temps d'expiration pour les liens raccourcis.
+
+Pour plus d'information, allez voir la page [Configuration](docs/config).
+
+## API Documentation [#api]
+
+Pour intéragir avec une instance Quecto à travers autre chose que l'interface Web, vous devez utiliser l'API. Cette API vous permet de raccourcir des liens, récupérer l'original de ces liens, et de gérer vos liens raccourcis.
+
+Pour plus d'informations, allez voir la [Documentation API](docs/api).

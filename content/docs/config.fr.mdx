@@ -1,0 +1,51 @@
+---
+title: Configuration
+description: Configurez votre instance Quecto
+---
+
+## Instance name
+Le champ `instance` est le nom de votre instance Quecto. Il est utilisé dans le titre de la page web et dans l'embed OpenGraph.
+
+```yaml title="config.yml"
+instance: "Quecto"
+```
+
+## Domain
+Le champ `domain` est le nom de domaine de votre instance Quecto. Il est utilisé pour générer les liens raccourcis.
+
+```yaml title="config.yml"
+domain: "quecto.example.com"
+```
+
+## SSL
+Le champ `ssl` est un booléen qui indique si votre instance Quecto utilise le SSL. Il est utilisé pour générer les liens raccourcis.
+
+```yaml title="config.yml"
+ssl: true
+```
+
+## Authorizing custom shortcodes
+Le champ `authorize_custom_shortcode` est un booléen qui indique si vous voulez autoriser les identifiants personnalisés. Il est utilisé pour générer les liens raccourcis.
+
+```yaml title="config.yml"
+authorize_custom_shortcode: true
+```
+
+## Expiration times
+Le champ `expirations` est une liste des temps d'expiration pour les liens raccourcis. Il est utilisé pour générer les liens raccourcis.
+
+### Name
+
+Le champ `name` est le nom du temps d'expiration.
+
+### Minutes
+Le champ `minutes` est le nombre de minutes avant que le lien raccourci n'expire.
+Si vous voulez mettre un temps d'expiration illimité, vous pouvez mettre `0` dans le champ.
+
+```yaml twoslash title="config.yml"
+expirations:
+    - name: "Illimité"
+      minutes: 0
+    - name: "1 heure"
+      minutes: 60
+```

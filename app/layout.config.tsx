@@ -1,5 +1,5 @@
 import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
-import Logo from "../assets/logo.png";
+import Logo from "../public/logo.png";
 import Image from "next/image";
 
 /**

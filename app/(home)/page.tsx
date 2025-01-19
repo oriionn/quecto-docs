@@ -1,3 +1,9 @@
+import {Metadata} from "next";
+
+export const metadata: Metadata = {
+    title: 'Quecto',
+}
+
 export default function HomePage() {
     return (
         <main className="flex flex-1 flex-col justify-center text-center">

@@ -12,7 +12,7 @@ import Image from "next/image";
 export const baseOptions: BaseLayoutProps = {
     nav: {
         // can be JSX too!
-        title: 'Quecto',
+        title: <Image src={Logo} alt="quecto" height={30} />,
     },
     links: [
         {
@@ -27,7 +27,4 @@ export const baseOptions: BaseLayoutProps = {
         }
     ],
     githubUrl: "https://github.com/oriionn/quecto",
-    nav: {
-        title: <Image src={Logo} alt="quecto" height={30} />
-    }
 };
